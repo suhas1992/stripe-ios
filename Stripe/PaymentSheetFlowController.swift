@@ -45,7 +45,9 @@ extension PaymentSheet {
                     stripeId = paymentMethod.stripeId
                 case .new(let paymentMethodParams, _):
                     label = paymentMethodParams.paymentSheetLabel
-                    cardParams = paymentMethodParams.card
+                    if let card = paymentMethodParams.card {
+                        cardParams = card
+                    }
                 }
             }
         }

@@ -30,6 +30,8 @@ extension PaymentSheet {
             public let image: UIImage
             /// A user facing string representing the payment method; e.g. "Apple Pay" or "····4242" for a card
             public let label: String
+            
+            public let card: STPPaymentMethodCard?
 
             init(paymentOption: PaymentOption) {
                 image = paymentOption.makeImage()
@@ -38,8 +40,10 @@ extension PaymentSheet {
                     label = STPLocalizedString("Apple Pay", "Text for Apple Pay payment method")
                 case .saved(let paymentMethod):
                     label = paymentMethod.paymentSheetLabel
+                    card = paymentMethod.card
                 case .new(let paymentMethodParams, _):
                     label = paymentMethodParams.paymentSheetLabel
+                    card = paymentMethodParams.card
                 }
             }
         }

@@ -33,7 +33,7 @@ extension PaymentSheet {
             
             public let stripeId: String 
             
-            public let cardParams: STPPaymentMethodCardParams =  STPPaymentMethodCardParams.init()    
+            public let cardParams: STPPaymentMethodCardParams     
 
             init(paymentOption: PaymentOption) {
                 image = paymentOption.makeImage()

@@ -31,7 +31,7 @@ extension PaymentSheet {
             /// A user facing string representing the payment method; e.g. "Apple Pay" or "····4242" for a card
             public let label: String
             
-            public let stripeId: String = ""
+            public let stripeId: String 
             
             public let cardParams: STPPaymentMethodCardParams =  STPPaymentMethodCardParams.init()    
 
@@ -40,13 +40,19 @@ extension PaymentSheet {
                 switch paymentOption {
                 case .applePay:
                     label = STPLocalizedString("Apple Pay", "Text for Apple Pay payment method")
+                    stripeId = ""
+                    cardParams = STPPaymentMethodCardParams.init()
                 case .saved(let paymentMethod):
                     label = paymentMethod.paymentSheetLabel
                     stripeId = paymentMethod.stripeId
+                    cardParams = STPPaymentMethodCardParams.init()
                 case .new(let paymentMethodParams, _):
                     label = paymentMethodParams.paymentSheetLabel
+                    stripeId = ""
                     if let card = paymentMethodParams.card {
                         cardParams = card
+                    } else {
+                        cardParams = STPPaymentMethodCardParams.init()
                     }
                 }
             }

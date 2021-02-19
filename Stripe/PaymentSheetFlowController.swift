@@ -31,9 +31,9 @@ extension PaymentSheet {
             /// A user facing string representing the payment method; e.g. "Apple Pay" or "····4242" for a card
             public let label: String
             
-            public let stripeId: String?
+            public let stripeId: String = ""
             
-            public let cardParams: STPPaymentMethodCardParams?
+            public let cardParams: STPPaymentMethodCardParams =  STPPaymentMethodCardParams.init()    
 
             init(paymentOption: PaymentOption) {
                 image = paymentOption.makeImage()

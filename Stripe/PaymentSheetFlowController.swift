@@ -58,7 +58,7 @@ extension PaymentSheet {
 
         // MARK: - Private properties
 
-        private var paymentIntent: STPPaymentIntent
+        public var paymentIntent: STPPaymentIntent
         private let savedPaymentMethods: [STPPaymentMethod]
         private lazy var paymentOptionsViewController: ChoosePaymentOptionViewController = {
             let isApplePayEnabled = StripeAPI.deviceSupportsApplePay() && configuration.applePay != nil

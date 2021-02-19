@@ -33,7 +33,7 @@ extension PaymentSheet {
             
             public let stripeId: String 
             
-            public let cardParams: STPPaymentMethodCardParams     
+            public let paymentParams: STPPaymentMethodParams     
 
             init(paymentOption: PaymentOption) {
                 image = paymentOption.makeImage()
@@ -41,19 +41,15 @@ extension PaymentSheet {
                 case .applePay:
                     label = STPLocalizedString("Apple Pay", "Text for Apple Pay payment method")
                     stripeId = ""
-                    cardParams = STPPaymentMethodCardParams.init()
+                    paymentParams = STPPaymentMethodParams(card: STPPaymentMethodCardParams.init(), billingDetails: nil, metadata: nil)
                 case .saved(let paymentMethod):
                     label = paymentMethod.paymentSheetLabel
                     stripeId = paymentMethod.stripeId
-                    cardParams = STPPaymentMethodCardParams.init()
+                    paymentParams = STPPaymentMethodParams(card: STPPaymentMethodCardParams.init(), billingDetails: nil, metadata: nil)
                 case .new(let paymentMethodParams, _):
                     label = paymentMethodParams.paymentSheetLabel
                     stripeId = ""
-                    if let card = paymentMethodParams.card {
-                        cardParams = card
-                    } else {
-                        cardParams = STPPaymentMethodCardParams.init()
-                    }
+                    paymentParams = paymentMethodParams
                 }
             }
         }

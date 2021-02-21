@@ -93,7 +93,7 @@ public class PaymentSheet {
                           customerID: configuration.customer?.id) { result in
             switch result {
             case .success((let paymentIntent, let paymentMethods)):
-                guard paymentIntent.status == .requiresPaymentMethod || paymentIntent.status == .requires_action else {
+                guard paymentIntent.status == .requiresPaymentMethod else {
                     let message = paymentIntent.status == .succeeded ? "PaymentSheet received a PaymentIntent that is already completed!" : "PaymentSheet received a PaymentIntent in an unexpected state: \(paymentIntent.status)"
                     assertionFailure(message)
                     let error = PaymentSheetError.unknown(debugDescription: message)
